@@ -15,7 +15,7 @@ jobs:
         uses: suzuki-shunsuke/akoi-installer@v0.1.0
       - run: akoi install
 
-      - run: aws elasticache describe-cache-engine-versions --engine memcached | jq -r ".CacheEngineVersions[].EngineVersion" | uniq > versions.txt
+      - run: aws --region us-east-1 elasticache describe-cache-engine-versions --engine memcached | jq -r ".CacheEngineVersions[].EngineVersion" | uniq > versions.txt
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
